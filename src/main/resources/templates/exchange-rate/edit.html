@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/layout}">
+<head>
+</head>
+<body>
+<h1 layout:fragment="title">Update Exchange Rate</h1>
+<main layout:fragment="content">
+    <form th:action="@{/admin/exchange-rate/update}" th:object="${exchangeRateForm}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>From</label>
+                    <input class="form-control" th:field="*{fromCurrencyCode}" readonly>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>To</label>
+                    <input class="form-control" th:field="*{toCurrencyCode}" readonly>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Rate</label>
+                    <input type="text" class="form-control" th:field="*{rate}"/>
+                    <span class="text-danger" th:if="${#fields.hasErrors('rate')}" th:errors="*{rate}">rate error</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-danger float-right" onclick="this.form.action='/admin/exchange-rate/delete'">Delete</button>
+            </div>
+        </div>
+    </form>
+</main>
+</body>
+</html>

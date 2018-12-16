@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/layout}">
+<head>
+</head>
+<body>
+<h1 layout:fragment="title">Currencies</h1>
+<main layout:fragment="content">
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-md-12">
+            <a th:href="@{/admin/currency/create}" class="btn btn-secondary float-right">Create new</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th width="10%" class="text-center">ID</th>
+                        <th width="30%" class="text-center">Code</th>
+                        <th width="60%" class="text-center">Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="c : ${currencies}">
+                        <td class="text-right"><a th:href="@{|/admin/currency/edit/${c.getId()}|}" th:text="${c.getId()}"></a></td>
+                        <td th:text="${c.getCode()}" class="text-center"></td>
+                        <td th:text="${c.getName()}" class="text-left"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+</body>
+</html>

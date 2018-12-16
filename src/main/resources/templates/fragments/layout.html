@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency Converter</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+<div id="wrapper">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <header style="text-align: center; margin-bottom: 50px;">
+                <h1 layout:fragment="title">Currency Converter</h1>
+                <hr/>
+                <div class="alert alert-success" role="alert" th:if="${successMessage != null}" th:text="${successMessage}">
+                </div>
+            </header>
+            <main layout:fragment="content">
+            </main>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.js}"></script>
+</body>
+</html>

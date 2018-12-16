@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/layout}">
+<head>
+</head>
+<body>
+<h1 layout:fragment="title">Error</h1>
+<main layout:fragment="content">
+    <div class="row">
+        <div class="col-md-12" style="text-align: center;">
+            <h3 th:if="${message != null}" th:text="${message}"></h3>
+            <h3 th:if="${message == null}" th:text="${'An unexpected error ocurred'}"></h3>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-md-4 offset-md-4">
+            <div class="form-group">
+                <a href="javascript:window.history.back()" class="btn btn-primary btn-block">Go back</a>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

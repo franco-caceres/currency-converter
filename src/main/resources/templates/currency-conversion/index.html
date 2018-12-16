@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/layout}">
+<head>
+</head>
+<body>
+<h1 layout:fragment="title">Currency Converter</h1>
+<main layout:fragment="content">
+    <form th:action="@{/currency-conversion/convert}" th:object="${conversionForm}" method="get">
+        <div class="row">
+            <div class="col-md-2" style="text-align: center;">
+                <h3>Convert</h3>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <input step="0.01" type="number" class="form-control" placeholder="amount" th:field="*{amount}"/>
+                    <span class="text-danger" th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}">amount error</span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <select class="form-control" th:field="*{fromCurrencyCode}">
+                        <option value="">Select</option>
+                        <option th:each="c : *{currencies}" th:value="${c.getCode()}" th:text="${c.toString()}"></option>
+                    </select>
+                    <span class="text-danger" th:if="${#fields.hasErrors('fromCurrencyCode')}" th:errors="*{fromCurrencyCode}">fromCurrencyCode error</span>
+                </div>
+            </div>
+            <div class="col-md-1" style="text-align: center;">
+                <h3>to</h3>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <select class="form-control" th:field="*{toCurrencyCode}">
+                        <option value="">Select</option>
+                        <option th:each="c : *{currencies}" th:value="${c.getCode()}" th:text="${c.toString()}"></option>
+                    </select>
+                    <span class="text-danger" th:if="${#fields.hasErrors('toCurrencyCode')}" th:errors="*{toCurrencyCode}">toCurrencyCode error</span>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-2 offset-md-5">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</main>
+</body>
+</html>
